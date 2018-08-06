@@ -8,7 +8,7 @@
                 <!-- ->toFormattedDateString()-->
             </div>
             <div class="col-sm-3">
-                <button class="btn btn-success" href="/create">+</button>
+                <button class="btn btn-success" href="/students/create">+</button>
             </div>
         </div>
     <hr>
@@ -20,7 +20,7 @@
                             <img src="{{asset($student->img)}}">
                         </div>
                         <div class="col-sm-6 card-body">
-                            {{$student->first_name}} {{$student->last_name}}
+                            {{$student->name}}
                             {{$student->phone}}
                         </div>
                     </div>

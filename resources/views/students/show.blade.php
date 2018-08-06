@@ -2,9 +2,13 @@
 
 @section('container')
 
-    <h1>{{$student->first_name}} {{$student->last_name}}</h1>
+    <a href="/students" class="btn btn-info">Go Back</a>
+
+    <h1>{{$student->name}}</h1>
 
     <h1>{{$student->phone}}</h1>
+
+    <a href="/students/{{$student->id}}/edit" class="btn btn-primary">Edit Student</a>
 
     <hr>
 
@@ -13,8 +17,14 @@
             <li class="list-group-item">
                 {{$course->name}}
             </li>
-            @endforeach
+        @endforeach
     </div>
+
+    {!! Form::open(['action' => ['StudentsController@destroy', $student->id], 'method' => 'POST', 'class' => 'float-right']) !!}
+    {{Form::hidden('_method', 'DELETE')}}
+    {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+
+    {!! Form::close() !!}
 
 
 @endsection

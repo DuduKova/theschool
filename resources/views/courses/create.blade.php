@@ -2,27 +2,24 @@
 
 @section('container')
 
-    <h1>Create course</h1>
+    <h1>Create Course</h1>
 
-    <form method="POST" action="/">
-        @csrf
-        <div class="form-group">
-            <label for="courseName">Name</label>
-            <input type="text" class="form-control" id="courseName" name="name" placeholder="Enter name" required>
-        </div>
-        <div class="form-group">
-            <label for="courseDescription">Description</label>
-            <input type="text" class="form-control" id="courseDescription" name="description" placeholder="Enter Description"
-                   required>
-        </div>
-        <div class="form-group">
-            <label for="coursePic">Picture</label>
-            <input type="file" name="img" class="form-control" id="coursePic" placeholder="Enter email" required>
-        </div>
+    {!! Form::open(['action' => 'CoursesController@store', 'method' => 'POST']) !!}
+    <div class="form-group">
+        {{Form::label('name', 'Name')}}
+        {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter your name'] )}}
+    </div>
+    <div class="form-group">
+        {{Form::label('description', 'Description')}}
+        {{Form::textarea('description', '', ['id'=> 'article-ckeditor','class' => 'form-control', 'placeholder' => 'Enter your course'] )}}
+    </div>
+    <div class="form-group">
+        {{Form::label('img', 'IMG')}}
+        {{Form::text('img', '', ['class' => 'form-control', 'placeholder' => 'Enter your role'] )}}
+    </div>
+    {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-
+    {!! Form::close() !!}
     @include('layouts.errors')
 
 @endsection

@@ -2,26 +2,24 @@
 
 @section('container')
 
-    <h1>Update course</h1>
+    <h1>Edit Course</h1>
 
-    <form method="POST" action="/">
-        @csrf
-        <div class="form-group">
-            <label for="courseName">Name</label>
-            <input type="text" value="{{$course->name}}" class="form-control" id="courseName" name="name" placeholder="Enter name" required>
-        </div>
-        <div class="form-group">
-            <label for="courseDescription">Description</label>
-            <input type="text" value="{{$course->description}}" class="form-control" id="courseDescription" name="description" placeholder="Enter Description"
-                   required>
-        </div>
-        <div class="form-group">
-            <label for="coursePic">Picture</label>
-            <input type="file" value="{{$course->img}}" name="img" class="form-control" id="coursePic" placeholder="Enter email" required>
-        </div>
+    {!! Form::open(['action' => 'CoursesController@update', 'method' => 'POST']) !!}
+    <div class="form-group">
+        {{Form::label('name', 'Name')}}
+        {{Form::text('name', $course->name, ['class' => 'form-control', 'placeholder' => 'Enter your name'] )}}
+    </div>
+    <div class="form-group">
+        {{Form::label('description', 'Description')}}
+        {{Form::textarea('description', $course->description, ['id'=> 'article-ckeditor','class' => 'form-control', 'placeholder' => 'Enter your course'] )}}
+    </div>
+    <div class="form-group">
+        {{Form::label('img', 'IMG')}}
+        {{Form::text('img', $course->img, ['class' => 'form-control', 'placeholder' => 'Enter your role'] )}}
+    </div>
+    {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    {!! Form::close() !!}
 
     @include('layouts.errors')
 

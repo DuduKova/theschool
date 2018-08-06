@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Student;
 use Illuminate\Http\Request;
 use App\Course;
 
 class CoursesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,7 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::coursesList();
 
         return view('courses.index')->with('courses', $courses);
     }
@@ -47,7 +51,7 @@ class CoursesController extends Controller
         ]);
 
         //create course
-        $course = new Course();
+        $course = new Course;
         $course->name = $request->input('name');
         $course->description = $request->input('description');
         $course->img = $request->input('img');
@@ -76,7 +80,8 @@ class CoursesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $course = Course::find($id);
+        return view('courses.edit')->with('course', $course);
     }
 
     /**
@@ -88,7 +93,19 @@ class CoursesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request , [
+            'name' => 'required',
+            'img' => 'required',
+            'description' => 'required'
+        ]);
+        //create user
+        $course = Course::find($id);
+        $course->name =$request->input('name');
+        $course->description =$request->input('description');
+        $course->img =$request->input('img');
+        $course->save();
+
+        return redirect('/courses')->with('success','Course Updated');
     }
 
     /**
@@ -99,7 +116,9 @@ class CoursesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $course = Course::find($id);
+        $course->delete();
+        return redirect('/courses')->with('success', 'Course Deleted');
     }
 
 }

@@ -11,10 +11,14 @@
 |
 */
 
+
+
 use App\User;
 
+Route::resource('students', "StudentsController");
+Route::resource('courses', "CoursesController");
 
-Route::get('/', 'StudentsController@index');
+Route::get('/', 'CoursesController@index');
 
 Route::get('/users', function () {
 
@@ -31,33 +35,4 @@ Route::get('/users/{user}', function ($id) {
     return view('users.show')->with('user', $user);
 });
 
-//course list
-
-Route::get('/courses', 'CoursesController@index');
-
-//course show
-
-Route::get('/courses/{course}', 'CoursesController@show');
-
-//course create
-
-Route::get('/create', 'StudentsController@create');
-
-//students list
-
-Route::get('/students', 'StudentsController@index');
-
-//student show
-
-Route::get('/students/{student}', 'StudentsController@show');
-
-//student create
-
-//Route::get('/create', 'StudentsController@create');
-
-//student save after create.
-
-Route::post('/', 'StudentsController@store');
-
-
-
+Auth::routes();

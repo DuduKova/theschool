@@ -17,10 +17,12 @@
 
 <body>
 @include('layouts.nav')
+@include('layouts.errors')
 <div class="jumbotron">
     <div class="row">
         @yield('coursesList')
         @yield('studentsList')
+        @yield('adminsList')
 
         <div class="col-sm-6">
             <div class="container">

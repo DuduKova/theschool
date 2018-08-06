@@ -1,25 +1,11 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.master')
 
-    <title>SHOW</title>
+@section('container')
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <h1>{{$user->name}}</h1>
 
-</head>
-<body>
-<div class="card">
-    <div class="card-header">
-        {{$user->name}}
-    </div>
-    <div class="card-body">
-        {{$user->role}}
-    </div>
-</div>
-</body>
-</html>
+    <h1>{{$user->phone}}</h1>
+
+    <hr>
+
+@endsection

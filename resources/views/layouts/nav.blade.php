@@ -11,7 +11,13 @@
                 <a class="nav-link" href="/">The School</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Administration</a>
+                <a class="nav-link" href="/users">Administration</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/students/create">student create</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/courses/create">course create</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-md-0">
@@ -19,3 +25,4 @@
         </form>
     </div>
 </nav>
+

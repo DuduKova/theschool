@@ -10,4 +10,10 @@ class Course extends Model
         return $this->belongsToMany(Student::class);
     }
 
+    public static function coursesList(){
+
+        Return static::latest()->get();
+
+    }
+
 }

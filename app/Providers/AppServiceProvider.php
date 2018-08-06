@@ -13,7 +13,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('students.index' , function ($view) {
+            $view->with('studentsList' , \App\Student::studentsList());
+        });
+
+        view()->composer('courses.index' , function ($view) {
+            $view->with('coursesList' , \App\Course::coursesList());
+        });
+
     }
 
     /**

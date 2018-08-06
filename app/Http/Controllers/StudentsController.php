@@ -7,6 +7,10 @@ use App\Student;
 
 class StudentsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +20,7 @@ class StudentsController extends Controller
     {
         // /students
 
-        $students = Student::latest()->get();
+        $students = Student::studentsList();
 
         return view('students.index')->with('students', $students);
     }
@@ -44,8 +48,7 @@ class StudentsController extends Controller
         // POST /students
 
         $this->validate($request, [
-            'first' => 'required|min:2',
-            'last' => 'required|min:2',
+            'name' => 'required|min:2',
             'email' => 'required|min:8',
             'phone' => 'required|min:10',
             'img' => 'required'
@@ -53,8 +56,7 @@ class StudentsController extends Controller
 
         //create student
         $student = new Student;
-        $student->first_name = $request->input('first');
-        $student->last_name = $request->input('last');
+        $student->name = $request->input('name');
         $student->email = $request->input('email');
         $student->phone = $request->input('phone');
         $student->img = $request->input('img');
@@ -84,7 +86,8 @@ class StudentsController extends Controller
      */
     public function edit($id)
     {
-        // GET /students/id/edit
+        $student = Student::find($id);
+        return view('students.edit')->with('student', $student);
     }
 
     /**
@@ -96,7 +99,19 @@ class StudentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // PATCH /students/id
+        $this->validate($request , [
+            'name' => 'required',
+            'email' => 'required'
+        ]);
+        //create user
+        $student = Student::find($id);
+        $student->name =$request->input('name');
+        $student->email =$request->input('email');
+        $student->phone =$request->input('phone');
+        $student->img =$request->input('img');
+        $student->save();
+
+        return redirect('/students')->with('success','Student Updated');
     }
 
     /**
@@ -107,6 +122,8 @@ class StudentsController extends Controller
      */
     public function destroy($id)
     {
-        // DELETE /students/id
+        $student = Student::find($id);
+        $student->delete();
+        return redirect('/students')->with('success', 'Student Deleted');
     }
 }

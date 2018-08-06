@@ -1,28 +1,33 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.master')
 
-    <title>INDEX</title>
+@section('adminsList')
+    <div class="col-sm-3">
+        <div class="row">
+            <div class="col-sm-9">
+                <h4>Admins</h4>
+                <!-- ->toFormattedDateString()-->
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-success" href="/create">+</button>
+            </div>
+        </div>
+        <hr>
+        @foreach($users as $user)
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+            <a href="/users/{{$user->id}}"><div class="card">
+                    <div class="row">
+                        <div class="col-sm-6 card-img">
+                            <img src="{{asset($user->img)}}">
+                        </div>
+                        <div class="col-sm-6 card-body">
+                            {{$user->name}}
+                            {{$user->phone}}
+                        </div>
+                    </div>
 
-</head>
-<body>
-<ul>
+                </div></a>
 
-@foreach($users as $user)
+        @endforeach
+    </div>
 
-    <a href="/users/{{$user->id}}"><li>
-            {{$user->name}}
-            {{$user->phone}}
-        </li></a>
-
-@endforeach
-
-</ul>
-</body>
-</html>
+@endsection
