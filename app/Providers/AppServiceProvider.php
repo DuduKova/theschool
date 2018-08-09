@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use \Illuminate\Support\Facades\View;
+use Illuminate\Contracts\View\Factory;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,12 +15,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('students.index' , function ($view) {
-            $view->with('studentsList' , \App\Student::studentsList());
+        view()->composer('students.student_list', function ($view) {
+            $view->with('students', \App\Student::studentsList());
         });
-
-        view()->composer('courses.index' , function ($view) {
-            $view->with('coursesList' , \App\Course::coursesList());
+        view()->composer('courses.course_list', function ($view) {
+            $view->with('courses', \App\Course::coursesList());
+        });
+        view()->composer('layouts.main_container', function ($view) {
+            $view->with('students', \App\Student::studentsList());
+        });
+        view()->composer('layouts.main_container', function ($view) {
+            $view->with('courses', \App\Course::coursesList());
+        });
+        view()->composer('users.users_list', function ($view) {
+            $view->with('users', \App\User::usersList());
         });
 
     }

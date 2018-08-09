@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('role','7');
             $table->string('phone','20')->unique();
-            $table->string('img');
+            $table->string('img')->default('img.jpeg');
             $table->rememberToken();
             $table->timestamps();
         });

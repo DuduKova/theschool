@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Student;
+use App\Http\Controllers\ValidationController;
 
 class StudentsController extends Controller
 {
@@ -11,6 +13,7 @@ class StudentsController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -51,18 +54,20 @@ class StudentsController extends Controller
             'name' => 'required|min:2',
             'email' => 'required|min:8',
             'phone' => 'required|min:10',
-            'img' => 'required'
+            'img' => 'required|max:1999'
         ]);
+
+        $this->imageValidate($request);
 
         //create student
         $student = new Student;
         $student->name = $request->input('name');
         $student->email = $request->input('email');
         $student->phone = $request->input('phone');
-        $student->img = $request->input('img');
+        $student->img = $this->imageValidate($request);
         $student->save();
 
-        return redirect('/students')->with('success', 'Student created');
+        return redirect('/theschool')->with('success', 'Student created');
 
     }
 
@@ -99,19 +104,26 @@ class StudentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request , [
-            'name' => 'required',
-            'email' => 'required'
+        $this->validate($request, [
+            'name' => 'required|min:2',
+            'email' => 'required|min:8',
+            'phone' => 'required|min:10',
+            'img' => 'required|max:1999'
         ]);
-        //create user
+
+        $this->imageValidate($request);
+
+        //create student
         $student = Student::find($id);
-        $student->name =$request->input('name');
-        $student->email =$request->input('email');
-        $student->phone =$request->input('phone');
-        $student->img =$request->input('img');
+        $student->name = $request->input('name');
+        $student->email = $request->input('email');
+        $student->phone = $request->input('phone');
+        if ($request->hasFile('img')) {
+            $student->img = $this->imageValidate($request);;
+        }
         $student->save();
 
-        return redirect('/students')->with('success','Student Updated');
+        return redirect('/theschool')->with('success', 'Student Updated');
     }
 
     /**
@@ -123,7 +135,12 @@ class StudentsController extends Controller
     public function destroy($id)
     {
         $student = Student::find($id);
+        if ($student->img != 'student.png') {
+            //delete img
+            Storage::delete('public/uploads/' . $student->img);
+
+        }
         $student->delete();
-        return redirect('/students')->with('success', 'Student Deleted');
+        return redirect('/theschool')->with('success', 'Student Deleted');
     }
 }

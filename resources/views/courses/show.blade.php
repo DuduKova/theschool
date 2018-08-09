@@ -1,29 +1,37 @@
-@extends('layouts.master')
+@extends('layouts.overview')
 
 @section('container')
 
-    <a href="/courses" class="btn btn-info">Go Back</a>
+    <div class="col-sm-6">
+        <div class="container">
 
-    <h1>{{$course->name}}</h1>
+            {!! Form::open(['action' => ['CoursesController@destroy', $course->id], 'method' => 'POST', 'class' => 'float-right']) !!}
+            {{Form::hidden('_method', 'DELETE')}}
+            {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
 
-    <h1>{{$course->description}}</h1>
+            {!! Form::close() !!}
 
-    <a href="/courses/{{$course->id}}/edit" class="btn btn-primary">Edit Course</a>
+            <a href="/courses/{{$course->id}}/edit" id="{{$course->id}}" class="btn btn-primary">Edit Course</a>
 
-    <hr>
 
-    <div class="list-group">
-        @foreach($course->students as $student)
-            <li class="list-group-item">
-                {{$student->name}}
-            </li>
-        @endforeach
+            <h1>{{$course->name}}</h1>
+
+            <h1>{{$course->description}}</h1>
+
+            <img src="/storage/uploads/{{$course->img}}">
+
+            <hr>
+
+            <div class="list-group">
+                @foreach($course->students as $student)
+                    <li class="list-group-item">
+                        {{$student->name}}
+                    </li>
+                @endforeach
+            </div>
+
+
+        </div>
     </div>
-
-    {!! Form::open(['action' => ['CoursesController@destroy', $course->id], 'method' => 'POST', 'class' => 'float-right']) !!}
-    {{Form::hidden('_method', 'DELETE')}}
-    {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-
-    {!! Form::close() !!}
 
 @endsection

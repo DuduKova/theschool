@@ -11,28 +11,9 @@
 |
 */
 
-
-
-use App\User;
-
 Route::resource('students', "StudentsController");
 Route::resource('courses', "CoursesController");
-
-Route::get('/', 'CoursesController@index');
-
-Route::get('/users', function () {
-
-    $users = User::all();
-
-    return view('users.index')->with('users', $users);
-});
-
-
-Route::get('/users/{user}', function ($id) {
-
-    $user = User::find($id);
-
-    return view('users.show')->with('user', $user);
-});
+Route::resource('users', "UsersController");
+Route::get('/theschool', 'HomeController@index');
 
 Auth::routes();

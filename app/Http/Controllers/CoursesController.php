@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Course;
+
 
 class CoursesController extends Controller
 {
@@ -47,17 +49,19 @@ class CoursesController extends Controller
         $this->validate($request, [
             'name' => 'required|min:2',
             'description' => 'required',
-            'img' => 'required'
+            'img' => 'required|max:1999',
         ]);
+
+        $this->imageValidate($request);
 
         //create course
         $course = new Course;
         $course->name = $request->input('name');
         $course->description = $request->input('description');
-        $course->img = $request->input('img');
+        $course->img =  $this->imageValidate($request);
         $course->save();
 
-        return redirect('/courses')->with('success', 'Course created');
+        return redirect('/theschool')->with('success', 'Course created');
     }
 
     /**
@@ -94,18 +98,23 @@ class CoursesController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request , [
-            'name' => 'required',
-            'img' => 'required',
-            'description' => 'required'
+            'name' => 'required|min:2',
+            'description' => 'required',
+            'img' => 'required|max:1999',
         ]);
-        //create user
+
+        $this->imageValidate($request);
+
+        //update course
         $course = Course::find($id);
         $course->name =$request->input('name');
         $course->description =$request->input('description');
-        $course->img =$request->input('img');
+        if($request->hasFile('img')) {
+            $course->img = $this->imageValidate($request);
+        }
         $course->save();
 
-        return redirect('/courses')->with('success','Course Updated');
+        return redirect('/theschool')->with('success','Course Updated');
     }
 
     /**
@@ -116,9 +125,16 @@ class CoursesController extends Controller
      */
     public function destroy($id)
     {
+
         $course = Course::find($id);
+        if($course->img != 'course.png'){
+            //delete img
+            Storage::delete('public/uploads/'.$course->img);
+
+        }
         $course->delete();
-        return redirect('/courses')->with('success', 'Course Deleted');
+
+        return redirect('/theschool')->with('success', 'Course Deleted');
     }
 
 }
