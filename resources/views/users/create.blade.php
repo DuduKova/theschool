@@ -18,6 +18,24 @@
                         </div>
                     </div>
 
+                    <!-- Name -->
+
+                    <div class="form-group">
+                        {{Form::label('name', 'Name:',['class' => 'col-lg-2 control-label'])}}
+                        <div class="col-lg-10">
+                            {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter your name'] )}}
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+
+                    <div class="form-group">
+                        {{Form::label('phone', 'Phone:',['class' => 'col-lg-2 control-label'])}}
+                        <div class="col-lg-10">
+                            {{Form::text('phone', '', ['class' => 'form-control', 'placeholder' => 'Enter your phone'] )}}
+                        </div>
+                    </div>
+
                     <!-- Email -->
                     <div class="form-group">
                         {!! Form::label('email', 'Email:', ['class' => 'col-lg-2 control-label']) !!}
@@ -34,11 +52,28 @@
                         </div>
                     </div>
 
+                    <!-- Confirm -->
+                    <div class="form-group">
+                        {!! Form::label('password_confirmation', 'Confirmation:', ['class' => 'col-lg-2 control-label']) !!}
+                        <div class="col-lg-10">
+                            {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Password Confirmation']) !!}
+                        </div>
+                    </div>
+
                     <!-- Select With One Default -->
                     <div class="form-group">
-                        {!! Form::label('select', 'Select w/Default', ['class' => 'col-lg-2 control-label'] )  !!}
+                        {!! Form::label('role', 'Select w/Default', ['class' => 'col-lg-2 control-label'] )  !!}
                         <div class="col-lg-10">
-                            {!!  Form::select('select', ['sales' => 'Sales', 'manager' => 'Manager'],  'S', ['class' => 'form-control' ]) !!}
+                            {!!  Form::select('role', ['sales' => 'Sales', 'manager' => 'Manager'],  'S', ['class' => 'form-control' ]) !!}
+                        </div>
+                    </div>
+
+                    <!-- IMG -->
+
+                    <div class="form-group">
+                        {{Form::label('img', 'IMG' , ['class' => 'col-lg-2 control-label'])}}
+                        <div class="col-lg-10">
+                            {{Form::file('img',['class' => 'form-control'] )}}
                         </div>
                     </div>
 

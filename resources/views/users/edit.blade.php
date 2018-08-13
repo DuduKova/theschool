@@ -2,6 +2,7 @@
 
 @section('container')
 
+
     <div class="col-sm-9">
         <div class="container">
 
@@ -54,13 +55,43 @@
                             </div>
                         </div>
 
-                        <!-- Select With One Default -->
+                        <!-- Password -->
                         <div class="form-group">
-                            {!! Form::label('role', 'Role:', ['class' => 'col-lg-2 control-label'] )  !!}
+                            {!! Form::label('password', 'Password:', ['class' => 'col-lg-2 control-label']) !!}
                             <div class="col-lg-10">
-                                {!!  Form::text('role',$user->role, ['class' => 'form-control' ]) !!}
+                                {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password']) !!}
                             </div>
                         </div>
+
+                        <!-- Confirm -->
+                        <div class="form-group">
+                            {!! Form::label('password_confirmation', 'Confirmation:', ['class' => 'col-lg-2 control-label']) !!}
+                            <div class="col-lg-10">
+                                {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Password Confirmation']) !!}
+                            </div>
+                        </div>
+
+                        <!-- Select With One Default -->
+
+
+                        @if($user->role == 'sales')
+
+                        <div class="form-group">
+                            {!! Form::label('role', 'Select w/Default', ['class' => 'col-lg-2 control-label'] )  !!}
+                            <div class="col-lg-10">
+                                {!!  Form::select('role',['sales' => 'Sales', 'manager' => 'Manager'],  'S', ['class' => 'form-control' ]) !!}
+                            </div>
+                        </div>
+                         @else
+                        <div class="form-group">
+                            {!! Form::label('role', 'Select w/Default', ['class' => 'col-lg-2 control-label'] )  !!}
+                            <div class="col-lg-10">
+                                {!!  Form::select('role',['manager' => 'Manager','sales' => 'Sales'],  'S', ['class' => 'form-control' ]) !!}
+                            </div>
+                        </div>
+
+                        @endif
+
 
                         <!-- IMG -->
 

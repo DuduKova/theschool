@@ -58,13 +58,13 @@ class UsersController extends Controller
         $user = new User();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
-        $user->password = $request->input('password');
+        $user->password = \Hash::make($request->input('password'));
         $user->phone = $request->input('phone');
         $user->role = $request->input('role');
         $user->img =  $this->imageValidate($request);
         $user->save();
 
-        return redirect('/')->with('success', 'Student created');
+        return redirect('/theschool')->with('success', 'Student created');
     }
 
     /**
@@ -120,7 +120,7 @@ class UsersController extends Controller
         }
         $user->save();
 
-        return redirect('/')->with('success', 'User Updated');
+        return redirect('/theschool')->with('success', 'User Updated');
     }
 
     /**
@@ -138,6 +138,6 @@ class UsersController extends Controller
 
         }
         $user->delete();
-        return redirect('/')->with('success', 'Student Deleted');
+        return redirect('/theschool')->with('success', 'Student Deleted');
     }
 }
