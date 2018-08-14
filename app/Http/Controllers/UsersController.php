@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateUserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\User;
@@ -11,7 +12,7 @@ class UsersController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('manager');
     }
     /**
      * Display a listing of the resource.
@@ -41,16 +42,8 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required|string|max:30',
-            'email' => 'required|string|email|max:40|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'role' => 'required|string|max:7',
-            'phone' => 'required|string|max:20',
-            'img' => 'required|max:1999'
-        ]);
 
         $this->imageValidate($request);
 
@@ -64,7 +57,7 @@ class UsersController extends Controller
         $user->img =  $this->imageValidate($request);
         $user->save();
 
-        return redirect('/theschool')->with('success', 'Student created');
+        return redirect('/users')->with('success', 'Student created');
     }
 
     /**
@@ -101,7 +94,7 @@ class UsersController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string|max:30',
-            'email' => 'required|string|email|max:40|unique:users',
+            'email' => 'required|string|email|max:40|unique:users,id,' . $id,
             'password' => 'required|string|min:6|confirmed',
             'role' => 'required|string|max:7',
             'phone' => 'required|string|max:20',

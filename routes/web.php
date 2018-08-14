@@ -11,6 +11,9 @@
 |
 */
 
+//Route::get('/users/1', 'UsersController@show')->middleware('Owner');
+//Route::get('/users/1/edit', 'UsersController@edit')->middleware('Owner');
+
 Route::resource('students', "StudentsController");
 Route::resource('courses', "CoursesController");
 Route::resource('users', "UsersController");

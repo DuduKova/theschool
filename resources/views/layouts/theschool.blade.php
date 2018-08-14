@@ -2,6 +2,6 @@
 
 @section('container')
 
-@include('layouts.main_container')
+    @include('layouts.main_container')
 
 @endsection

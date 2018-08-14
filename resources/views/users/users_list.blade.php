@@ -9,9 +9,13 @@
         </div>
     </div>
     <hr>
-    <div class="list-group" id="list-tab" role="tablist">
+    <ul class="list-group" style="overflow-y: scroll; height: 500px" id="list-tab" role="tablist">
 
     @foreach($users as $user)
+
+        @if(Auth::user()->role !== 'Owner' && $loop->first)
+
+            @else
 
         <a href="/users/{{$user->id}}" class="list-group-item list-group-item-action" role="tab">
             <div class="card bg-light font-weight-bold text-dark">
@@ -20,14 +24,17 @@
                         <img src="/storage/uploads/{{$user->img}}" class="rounded-circle float-left" width="50px" height="50px">
                     </div>
                     <div class="col-sm-6 card-body">
-                        {{$user->name}}
+                        {{$user->name}}, {{$user->role}}
                         {{$user->phone}}
+                        {{$user->email}}
                     </div>
                 </div>
 
             </div>
         </a>
 
+            @endif
+
     @endforeach
-    </div>
+    </ul>
 </div>

@@ -15,16 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('students.student_list', function ($view) {
+        view()->composer(['students.student_list','layouts.main_container'], function ($view) {
             $view->with('students', \App\Student::studentsList());
         });
-        view()->composer('courses.course_list', function ($view) {
-            $view->with('courses', \App\Course::coursesList());
-        });
-        view()->composer('layouts.main_container', function ($view) {
-            $view->with('students', \App\Student::studentsList());
-        });
-        view()->composer('layouts.main_container', function ($view) {
+        view()->composer(['students.create','students.edit','courses.course_list','layouts.main_container'], function ($view) {
             $view->with('courses', \App\Course::coursesList());
         });
         view()->composer('users.users_list', function ($view) {

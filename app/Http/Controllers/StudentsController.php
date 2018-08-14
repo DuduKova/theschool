@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Student;
@@ -10,7 +11,7 @@ class StudentsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('manager',['except' => ['index','show','edit','update']]);
     }
 
     /**
@@ -65,6 +66,18 @@ class StudentsController extends Controller
         $student->phone = $request->input('phone');
         $student->img = $this->imageValidate($request);
         $student->save();
+
+        $courses_add = array($request->input('course'));
+
+        foreach ($courses_add as $course) {
+            # code...
+            if ($course)
+            {
+                $course = Course::find($course);
+                $student->courses()->attach($course);
+            }
+
+        }
 
         return redirect('/theschool')->with('success', 'Student created');
 
@@ -121,6 +134,18 @@ class StudentsController extends Controller
             $student->img = $this->imageValidate($request);;
         }
         $student->save();
+
+        $courses_add = array($request->input('course'));
+
+        foreach ($courses_add as $course) {
+            # code...
+            if ($course)
+            {
+                $course = Course::find($course);
+                $student->courses()->attach($course);
+            }
+
+        }
 
         return redirect('/theschool')->with('success', 'Student Updated');
     }

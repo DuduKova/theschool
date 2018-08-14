@@ -4,28 +4,35 @@
 
     <div class="col-sm-6">
         <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h2>Add Course</h2>
+                </div>
+            </div>
+            <hr>
 
-    <h1>Create Course</h1>
-
-    {!! Form::open(['action' => 'CoursesController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-    <div class="form-group">
-        {{Form::label('name', 'Name')}}
-        {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter your name'] )}}
-    </div>
-    <div class="form-group">
-        {{Form::label('description', 'Description')}}
-        {{Form::textarea('description', '', ['id'=> 'article-ckeditor','class' => 'form-control', 'placeholder' => 'Enter your course'] )}}
-    </div>
-    <div class="form-group">
-        {{Form::label('img', 'IMG')}}
-        {{Form::file('img', ['class' => 'form-control'] )}}
-    </div>
-    {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
-
-    {!! Form::close() !!}
-    @include('layouts.errors')
+            {!! Form::open(['action' => 'CoursesController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+            {{Form::submit('Save', ['class' => 'btn btn-primary'])}}
+            <div class="jumbotron">
 
 
+                <div class="form-group">
+                    {{Form::label('name', 'Name')}}
+                    {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter your name'] )}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('description', 'Description')}}
+                    {{Form::textarea('description', '', ['id'=> 'article-ckeditor','class' => 'form-control', 'placeholder' => 'Enter your course'] )}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('img', 'IMG')}}
+                    {{Form::file('img', ['class' => 'form-control'] )}}
+                </div>
+
+                {!! Form::close() !!}
+                @include('layouts.errors')
+
+            </div>
         </div>
     </div>
 

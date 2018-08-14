@@ -2,6 +2,14 @@
 
 @section('container')
 
+    @if($user->id == 1 && Auth::user()->role !== 'Owner')
+
+        <div class="col-sm-9 alert alert-danger">
+            <h1 align="center">You are not authorize to see this page.</h1>
+        </div>
+
+    @else
+
 
     <div class="col-sm-9">
         <div class="container">
@@ -73,25 +81,28 @@
 
                         <!-- Select With One Default -->
 
+                        @if(Auth::user()->role == 'Owner')
 
-                        @if($user->role == 'sales')
+                            @if($user->role == 'Owner')
+
+                                <h4 class="col-lg-2">Role: Owner</h4>
+
+                            @else
 
                         <div class="form-group">
-                            {!! Form::label('role', 'Select w/Default', ['class' => 'col-lg-2 control-label'] )  !!}
+                            {!! Form::label('role', 'Select Role', ['class' => 'col-lg-2 control-label'] )  !!}
                             <div class="col-lg-10">
-                                {!!  Form::select('role',['sales' => 'Sales', 'manager' => 'Manager'],  'S', ['class' => 'form-control' ]) !!}
+                                {!!  Form::select('role',['sales' => 'Sales', 'manager' => 'Manager'],  $user->role, ['class' => 'form-control' ]) !!}
                             </div>
                         </div>
-                         @else
-                        <div class="form-group">
-                            {!! Form::label('role', 'Select w/Default', ['class' => 'col-lg-2 control-label'] )  !!}
-                            <div class="col-lg-10">
-                                {!!  Form::select('role',['manager' => 'Manager','sales' => 'Sales'],  'S', ['class' => 'form-control' ]) !!}
-                            </div>
-                        </div>
+
+                            @endif
+
+                        @else
+
+
 
                         @endif
-
 
                         <!-- IMG -->
 
@@ -115,5 +126,7 @@
 
         </div>
     </div>
+
+    @endif
 
 @endsection
