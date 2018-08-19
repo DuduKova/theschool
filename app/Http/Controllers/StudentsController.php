@@ -142,7 +142,7 @@ class StudentsController extends Controller
             if ($course)
             {
                 $course = Course::find($course);
-                $student->courses()->attach($course);
+                $student->courses()->sync($course);
             }
 
         }

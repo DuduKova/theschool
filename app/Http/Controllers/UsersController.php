@@ -57,7 +57,7 @@ class UsersController extends Controller
         $user->img =  $this->imageValidate($request);
         $user->save();
 
-        return redirect('/users')->with('success', 'Student created');
+        return redirect('/users')->with('success', 'User created');
     }
 
     /**
@@ -113,7 +113,7 @@ class UsersController extends Controller
         }
         $user->save();
 
-        return redirect('/theschool')->with('success', 'User Updated');
+        return redirect('/users')->with('success', 'User Updated');
     }
 
     /**
@@ -131,6 +131,6 @@ class UsersController extends Controller
 
         }
         $user->delete();
-        return redirect('/theschool')->with('success', 'Student Deleted');
+        return redirect('/users')->with('success', 'User Deleted');
     }
 }

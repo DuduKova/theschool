@@ -30,24 +30,26 @@
                 </div>
                 <div class="form-group">
                     {{Form::label('img', 'IMG')}}
-                    {{Form::file('img', ['class' => 'form-control'] )}}
+                    {{Form::file('img', ['class' => 'form-control','id' => 'dropzone'] )}}
+                    <img src="" id="myImage" width="200px" height="200px" class="pt-4"/>
                 </div>
 
                 <h6>Courses:</h6>
-                <ul class="form-check form-check-inline list-inline">
-
-                    @foreach($courses as $course)
-                        <li class="list-inline-item">
-                            <input class="form-check-input" type="checkbox" id="{{$course->name}}" value="{{$course->id}}" name="course[]">
-                            <label class="form-check-label" for="{{$course->name}}">{{$course->name}}</label>
-                        </li>
-                    @endforeach
-
-                </ul>
-
-                {!! Form::close() !!}
-
-                @include('layouts.errors')
+                <div class="container">
+                    <ul class="form-check-inline">
+                        <div class="row">
+                            @foreach($courses as $course)
+                                <li class="list-group-item col-sm-3">
+                                    <input class="form-check-input" type="checkbox" id="{{$course->name}}"
+                                           value="{{$course->id}}" name="course[]">
+                                    <label class="form-check-label" for="{{$course->name}}">{{$course->name}}</label>
+                                </li>
+                            @endforeach
+                        </div>
+                    </ul>
+                    {!! Form::close() !!}
+                    @include('layouts.errors')
+                </div>
             </div>
         </div>
     </div>

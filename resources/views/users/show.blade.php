@@ -12,7 +12,17 @@
 
         <div class="col-sm-9">
             <div class="container">
-                <a href="/users/{{$user->id}}/edit" class="btn btn-primary float-right ml-5">Edit User</a>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h2>User</h2>
+                    </div>
+                    <div class="col-sm-9">
+                        <a href="/users/{{$user->id}}/edit" class="btn btn-primary float-right ml-5">Edit User</a>
+                    </div>
+                </div>
+
+                <hr>
+
                 <div class="card">
                     <div class="card-header pl-5">
                         <h1>Name: {{$user->name}}</h1>

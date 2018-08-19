@@ -47402,3 +47402,22 @@ if (false) {
 
 /***/ })
 /******/ ]);
+
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#myImage').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#dropzone").change(function(){
+    readURL(this);
+});
+
+$(".delete").on("submit", function(){
+    return confirm("Are you sure you want to delete this?");
+});

@@ -15,7 +15,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body data-spy="scroll" data-target=".list-group">
+<body style="max-width: 100%; overflow-x: hidden">
 @include('layouts.nav')
 @include('layouts.errors')
 <div class="jumbotron">

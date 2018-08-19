@@ -10477,3 +10477,13 @@ a.text-dark:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+#myImage {
+  width: 200px;
+  height: 200px;
+}
+
+.my-list {
+  overflow-y: scroll;
+  height: 500px;
+}
+

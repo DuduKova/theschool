@@ -26,7 +26,8 @@
                 </div>
                 <div class="form-group">
                     {{Form::label('img', 'IMG')}}
-                    {{Form::file('img', ['class' => 'form-control'] )}}
+                    {{Form::file('img', ['class' => 'form-control','id' => 'dropzone'] )}}
+                    <img src="" id="myImage" class="pt-4"/>
                 </div>
 
                 {!! Form::close() !!}

@@ -16,7 +16,7 @@
 
             @else
 
-                {!! Form::open(['action' => ['CoursesController@destroy', $course->id], 'method' => 'POST', 'class' => 'float-right']) !!}
+                {!! Form::open(['action' => ['CoursesController@destroy', $course->id], 'method' => 'POST', 'class' => 'float-right delete']) !!}
                 {{Form::hidden('_method', 'DELETE')}}
                 {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
 
@@ -41,7 +41,8 @@
                 </div>
                 <div class="form-group">
                     {{Form::label('img', 'IMG')}}
-                    {{Form::file('img', ['class' => 'form-control'] )}}
+                    {{Form::file('img', ['class' => 'form-control','id' => 'dropzone'] )}}
+                    <img src="/storage/uploads/{{$course->img}}" id="myImage" class="mt-4 rounded-circle"/>
                 </div>
 
                 {!! Form::close() !!}

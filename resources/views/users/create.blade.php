@@ -5,84 +5,86 @@
     <div class="col-sm-9">
         <div class="container">
 
-            <div class="well">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h2>Add User</h2>
+                </div>
+            </div>
 
-                {!! Form::open(['action' => 'UsersController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+            {!! Form::open(['action' => 'UsersController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+            <hr>
+            <!-- Submit Button -->
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    {!! Form::submit('Save', ['class' => 'btn btn-lg btn-info pull-right'] ) !!}
+                </div>
+            </div>
 
-                <fieldset>
+            <div class="jumbotron">
 
-                    <!-- Submit Button -->
-                    <div class="form-group">
-                        <div class="col-lg-10 col-lg-offset-2">
-                            {!! Form::submit('Create', ['class' => 'btn btn-lg btn-info pull-right'] ) !!}
-                        </div>
+                <!-- Name -->
+
+                <div class="form-group">
+                    {{Form::label('name', 'Name:',['class' => 'col-lg-2 control-label'])}}
+                    <div class="col-lg-10">
+                        {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter your name'] )}}
                     </div>
+                </div>
 
-                    <!-- Name -->
+                <!-- Phone -->
 
-                    <div class="form-group">
-                        {{Form::label('name', 'Name:',['class' => 'col-lg-2 control-label'])}}
-                        <div class="col-lg-10">
-                            {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter your name'] )}}
-                        </div>
+                <div class="form-group">
+                    {{Form::label('phone', 'Phone:',['class' => 'col-lg-2 control-label'])}}
+                    <div class="col-lg-10">
+                        {{Form::text('phone', '', ['class' => 'form-control', 'placeholder' => 'Enter your phone'] )}}
                     </div>
+                </div>
 
-                    <!-- Phone -->
-
-                    <div class="form-group">
-                        {{Form::label('phone', 'Phone:',['class' => 'col-lg-2 control-label'])}}
-                        <div class="col-lg-10">
-                            {{Form::text('phone', '', ['class' => 'form-control', 'placeholder' => 'Enter your phone'] )}}
-                        </div>
+                <!-- Email -->
+                <div class="form-group">
+                    {!! Form::label('email', 'Email:', ['class' => 'col-lg-2 control-label']) !!}
+                    <div class="col-lg-10">
+                        {!! Form::email('email', '', ['class' => 'form-control', 'placeholder' => 'email']) !!}
                     </div>
+                </div>
 
-                    <!-- Email -->
-                    <div class="form-group">
-                        {!! Form::label('email', 'Email:', ['class' => 'col-lg-2 control-label']) !!}
-                        <div class="col-lg-10">
-                            {!! Form::email('email', '', ['class' => 'form-control', 'placeholder' => 'email']) !!}
-                        </div>
+                <!-- Password -->
+                <div class="form-group">
+                    {!! Form::label('password', 'Password:', ['class' => 'col-lg-2 control-label']) !!}
+                    <div class="col-lg-10">
+                        {!! Form::password('password',['class' => 'form-control', 'placeholder' => 'Password', 'type' => 'password']) !!}
                     </div>
+                </div>
 
-                    <!-- Password -->
-                    <div class="form-group">
-                        {!! Form::label('password', 'Password:', ['class' => 'col-lg-2 control-label']) !!}
-                        <div class="col-lg-10">
-                            {!! Form::password('password',['class' => 'form-control', 'placeholder' => 'Password', 'type' => 'password']) !!}
-                        </div>
+                <!-- Confirm -->
+                <div class="form-group">
+                    {!! Form::label('password_confirmation', 'Confirmation:', ['class' => 'col-lg-2 control-label']) !!}
+                    <div class="col-lg-10">
+                        {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Password Confirmation']) !!}
                     </div>
+                </div>
 
-                    <!-- Confirm -->
-                    <div class="form-group">
-                        {!! Form::label('password_confirmation', 'Confirmation:', ['class' => 'col-lg-2 control-label']) !!}
-                        <div class="col-lg-10">
-                            {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Password Confirmation']) !!}
-                        </div>
+                <!-- Select Role-->
+                <div class="form-group">
+                    {!! Form::label('role', 'Select Role', ['class' => 'col-lg-2 control-label'] )  !!}
+                    <div class="col-lg-10">
+                        {!!  Form::select('role', ['sales' => 'Sales', 'manager' => 'Manager'],  'S', ['class' => 'form-control' ]) !!}
                     </div>
+                </div>
 
-                    <!-- Select With One Default -->
-                    <div class="form-group">
-                        {!! Form::label('role', 'Select w/Default', ['class' => 'col-lg-2 control-label'] )  !!}
-                        <div class="col-lg-10">
-                            {!!  Form::select('role', ['sales' => 'Sales', 'manager' => 'Manager'],  'S', ['class' => 'form-control' ]) !!}
-                        </div>
+                <!-- IMG -->
+
+                <div class="form-group">
+                    {{Form::label('img', 'IMG' , ['class' => 'col-lg-2 control-label'])}}
+                    <div class="col-lg-10">
+                        {{Form::file('img',['class' => 'form-control','id' => 'dropzone'] )}}
                     </div>
-
-                    <!-- IMG -->
-
-                    <div class="form-group">
-                        {{Form::label('img', 'IMG' , ['class' => 'col-lg-2 control-label'])}}
-                        <div class="col-lg-10">
-                            {{Form::file('img',['class' => 'form-control'] )}}
-                        </div>
-                    </div>
-
-                </fieldset>
+                    <img src="" id="myImage" class="pt-4"/>
+                </div>
 
                 {!! Form::close()  !!}
 
             </div>
-
         </div>
     </div>
 
