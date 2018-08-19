@@ -19,11 +19,16 @@
                 </div>
                 <hr>
                 <!-- Delete btn -->
+
+                @if($user->id == 1)
+
+                    @else
             {!! Form::open(['action' => ['UsersController@destroy', $user->id], 'method' => 'POST', 'class' => 'float-right delete']) !!}
             {{Form::hidden('_method', 'DELETE')}}
             {{Form::submit('Delete', ['class' => 'btn btn-lg btn-danger'])}}
 
             {!! Form::close() !!}
+            @endif
 
             <!-- Submit btn -->
 
