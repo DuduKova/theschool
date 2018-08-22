@@ -127,7 +127,7 @@ class CoursesController extends Controller
     {
 
         $course = Course::find($id);
-        if($course->img != 'course.png'){
+        if($course->img != 'default.png'){
             //delete img
             Storage::delete('public/uploads/'.$course->img);
 

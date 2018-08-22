@@ -118,7 +118,7 @@
                         <div class="col-lg-10">
                             {{Form::file('img',['class' => 'form-control','id' => 'dropzone'] )}}
                         </div>
-                        <img src="/storage/uploads/{{$user->img}}" id="myImage" class="mt-4 rounded-circle"/>
+                        <img src="/storage/uploads/{{$user->img}}" id="myImage" class="ml-3 mt-4 rounded-circle"/>
                     </div>
 
                 </div>

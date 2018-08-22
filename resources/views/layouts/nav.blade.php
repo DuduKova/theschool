@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand navbar-light bg-info font-weight-bold">
-    <img src="{{ asset('uploads/CodePro School-logo.png') }}" width="100px" height="50px">
+    <img src="/storage/uploads/logo.png" width="100px" height="50px">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02"
             aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

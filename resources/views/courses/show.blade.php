@@ -25,7 +25,8 @@
                     </div>
                     <div class="col-sm-9">
                         <div class="card-body pl-5">
-                            <h1>{{$course->name}}, {{count($course->students)}} students attending.</h1>
+                            <h1>{{$course->name}}</h1>
+                            <h2>{{count($course->students)}} students attending.</h2>
                             <h4>About:</h4>
                             <p>{{$course->description}}</p>
                         </div>

@@ -17,7 +17,7 @@ class CreateStudentsTable extends Migration
             $table->increments('id');
             $table->string('name','30');
             $table->string('email','40')->unique();
-            $table->string('phone','20')->unique();
+            $table->string('phone','40')->unique();
             $table->string('img');
 
 

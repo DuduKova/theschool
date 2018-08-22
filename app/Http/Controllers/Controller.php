@@ -32,7 +32,7 @@ class Controller extends BaseController
             return $fileNameToStore;
 
         } else {
-           return $fileMameToStore = 'student.png';
+           return $fileMameToStore = 'default.png';
         }
     }
 }

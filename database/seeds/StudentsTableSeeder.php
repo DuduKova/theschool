@@ -11,8 +11,6 @@ class StudentsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Student::class, 50)->create()->each(function ($u) {
-            $u->courses()->save(factory(App\Course::class)->make());
-        });
+        factory(App\Student::class, 50)->create();
     }
 }

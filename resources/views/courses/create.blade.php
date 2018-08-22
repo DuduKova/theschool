@@ -27,7 +27,7 @@
                 <div class="form-group">
                     {{Form::label('img', 'IMG')}}
                     {{Form::file('img', ['class' => 'form-control','id' => 'dropzone'] )}}
-                    <img src="" id="myImage" class="pt-4"/>
+                    <img src="/storage/uploads/default.png"  id="myImage" class="mt-4 rounded-circle"/>
                 </div>
 
                 {!! Form::close() !!}

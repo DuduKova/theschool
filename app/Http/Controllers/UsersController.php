@@ -125,7 +125,7 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        if ($user->img != 'student.png') {
+        if ($user->img != 'default.png') {
             //delete img
             Storage::delete('public/uploads/' . $user->img);
 

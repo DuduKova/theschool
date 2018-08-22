@@ -159,7 +159,7 @@ class StudentsController extends Controller
     public function destroy($id)
     {
         $student = Student::find($id);
-        if ($student->img != 'student.png') {
+        if ($student->img != 'default.png') {
             //delete img
             Storage::delete('public/uploads/' . $student->img);
 
