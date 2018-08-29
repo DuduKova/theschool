@@ -134,6 +134,7 @@ class StudentsController extends Controller
         $student->email = $request->input('email');
         $student->phone = $request->input('phone');
         if ($request->hasFile('img')) {
+            Storage::delete('public/uploads/' . $student->img);
             $student->img = $this->imageValidate($request);;
         }
         $student->save();

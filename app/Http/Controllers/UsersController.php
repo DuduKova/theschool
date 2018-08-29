@@ -113,6 +113,7 @@ class UsersController extends Controller
         $user->email = $request->input('email');
         $user->phone = $request->input('phone');
         if ($request->hasFile('img')) {
+            Storage::delete('public/uploads/' . $user->img);
             $user->img = $this->imageValidate($request);
         }
         $user->save();
