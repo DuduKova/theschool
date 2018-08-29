@@ -77,7 +77,7 @@
                 <div class="form-group">
                     {{Form::label('img', 'IMG' , ['class' => 'col-lg-2 control-label'])}}
                     <div class="col-lg-10">
-                        {{Form::file('img',['class' => 'form-control','id' => 'dropzone'] )}}
+                        {{Form::file('img',['class' => 'form-control','id' => 'img'] )}}
                     </div>
                     <img src="/storage/uploads/default.png" id="myImage" class="ml-3 mt-4 rounded-circle"/>
                 </div>

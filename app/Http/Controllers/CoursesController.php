@@ -23,6 +23,8 @@ class CoursesController extends Controller
     {
         $courses = Course::coursesList();
 
+        session(['courses' => $courses]);
+
         return view('courses.index')->with('courses', $courses);
     }
 
@@ -33,7 +35,7 @@ class CoursesController extends Controller
      */
     public function create()
     {
-        return view("courses.create");
+        return view("courses.edit");
     }
 
     /**
@@ -61,7 +63,11 @@ class CoursesController extends Controller
         $course->img =  $this->imageValidate($request);
         $course->save();
 
-        return redirect('/theschool')->with('success', 'Course created');
+        session()->forget('courses');
+
+        session()->flash('message', 'Course Saved!');
+
+        return redirect('/theschool');
     }
 
     /**
@@ -100,10 +106,8 @@ class CoursesController extends Controller
         $this->validate($request , [
             'name' => 'required|min:2',
             'description' => 'required',
-            'img' => 'required|max:1999',
+            'img' => 'max:1999',
         ]);
-
-        $this->imageValidate($request);
 
         //update course
         $course = Course::find($id);
@@ -114,7 +118,11 @@ class CoursesController extends Controller
         }
         $course->save();
 
-        return redirect('/theschool')->with('success','Course Updated');
+        session()->forget('courses');
+
+        session()->flash('message', 'Course Updated!');
+
+        return redirect('/theschool');
     }
 
     /**
@@ -134,7 +142,11 @@ class CoursesController extends Controller
         }
         $course->delete();
 
-        return redirect('/theschool')->with('success', 'Course Deleted');
+        session()->forget('courses');
+
+        session()->flash('message', 'Course Deleted!');
+
+        return redirect('/theschool');
     }
 
 }

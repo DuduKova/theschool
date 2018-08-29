@@ -19,8 +19,11 @@ class Course extends Model
     public static function coursesList()
     {
 
-        Return static::latest()->get();
-
+        if (session('courses')) {
+            return $courses = session('courses');
+        } else {
+            Return static::latest()->get();
+        }
     }
 
 }

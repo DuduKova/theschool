@@ -23,6 +23,8 @@ class UsersController extends Controller
     {
         $users = User::usersList();
 
+        session(['users' => $users]);
+
         return view('users.index')->with('users', $users);
     }
 
@@ -33,7 +35,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view("users.create");
+        return view("users.edit");
     }
 
     /**
@@ -57,7 +59,11 @@ class UsersController extends Controller
         $user->img =  $this->imageValidate($request);
         $user->save();
 
-        return redirect('/users')->with('success', 'User created');
+        session()->forget('users');
+
+        session()->flash('message', 'User Saved!');
+
+        return redirect('/users');
     }
 
     /**
@@ -113,7 +119,11 @@ class UsersController extends Controller
         }
         $user->save();
 
-        return redirect('/users')->with('success', 'User Updated');
+        session()->forget('users');
+
+        session()->flash('message', 'User Updated!');
+
+        return redirect('/users');
     }
 
     /**
@@ -131,6 +141,11 @@ class UsersController extends Controller
 
         }
         $user->delete();
-        return redirect('/users')->with('success', 'User Deleted');
+
+        session()->forget('users');
+
+        session()->flash('message', 'User Deleted!');
+
+        return redirect('/users');
     }
 }

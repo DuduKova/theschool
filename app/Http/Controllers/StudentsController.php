@@ -25,6 +25,8 @@ class StudentsController extends Controller
 
         $students = Student::studentsList();
 
+        session(['students' => $students]);
+
         return view('students.index')->with('students', $students);
     }
 
@@ -37,7 +39,7 @@ class StudentsController extends Controller
     {
         // /students/create
 
-        return view("students.create");
+        return view("students.edit");
     }
 
     /**
@@ -56,8 +58,6 @@ class StudentsController extends Controller
             'phone' => 'required|min:10',
             'img' => 'required|max:1999'
         ]);
-
-        $this->imageValidate($request);
 
         //create student
         $student = new Student;
@@ -79,7 +79,11 @@ class StudentsController extends Controller
 
         }
 
-        return redirect('/theschool')->with('success', 'Student created');
+        session()->forget('students');
+
+        session()->flash('message', 'Student Saved!');
+
+        return redirect('/theschool');
 
     }
 
@@ -120,10 +124,8 @@ class StudentsController extends Controller
             'name' => 'required|min:2',
             'email' => 'required|min:8',
             'phone' => 'required|min:10',
-            'img' => 'required|max:1999'
+            'img' => 'max:1999'
         ]);
-
-        $this->imageValidate($request);
 
         //create student
         $student = Student::find($id);
@@ -147,7 +149,11 @@ class StudentsController extends Controller
 
         }
 
-        return redirect('/theschool')->with('success', 'Student Updated');
+        session()->forget('students');
+
+        session()->flash('message', 'Student Updated!');
+
+        return redirect('/theschool');
     }
 
     /**
@@ -165,6 +171,11 @@ class StudentsController extends Controller
 
         }
         $student->delete();
-        return redirect('/theschool')->with('success', 'Student Deleted');
+
+        session()->forget('students');
+
+        session()->flash('message', 'Student Deleted!');
+
+        return redirect('/theschool');
     }
 }

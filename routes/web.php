@@ -11,8 +11,21 @@
 |
 */
 
-//Route::get('/users/1', 'UsersController@show')->middleware('Owner');
-//Route::get('/users/1/edit', 'UsersController@edit')->middleware('Owner');
+use App\User;
+
+Route::group(['prefix' => 'users',  'middleware' => 'Owner'], function()
+{
+    Route::get('1', function($id = 1) {
+        $user = User::find($id);
+        return view('users.show')->with('user', $user);
+    } );
+
+    Route::get('1/edit', function($id = 1) {
+        $user = User::find($id);
+        return view('users.edit')->with('user', $user);
+    } );
+
+});
 
 Route::resource('students', "StudentsController");
 Route::resource('courses', "CoursesController");

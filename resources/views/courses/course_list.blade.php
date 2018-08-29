@@ -9,7 +9,7 @@
         </div>
     </div>
     <hr>
-    <ul class="list-group my-list">
+    <ul class="list-group my-list shadow">
         @foreach($courses as $course)
 
          @include('courses.course_item')

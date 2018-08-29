@@ -10,7 +10,7 @@
                 </div>
                 @if(Auth::user()->role !== 'sales')
                     <div class="col-sm-9">
-                        <a href="/courses/{{$course->id}}/edit" class="btn btn-primary float-right ml-5">Edit Course</a>
+                        <a href="/courses/{{$course->id}}/edit" class="btn btn-primary float-right ml-5">Edit</a>
                     </div>
                 @endif
             </div>
@@ -19,13 +19,11 @@
             <div class="card">
                 <div class="row">
                     <div class="col-sm-3 m-auto">
-                        <img src="/storage/uploads/{{$course->img}}" class="rounded-circle mx-auto d-block"
-                             width="150px"
-                             height="150px">
+                        <img src="/storage/uploads/{{$course->img}}" class="rounded-circle mx-auto d-block profile-pic-lg">
                     </div>
                     <div class="col-sm-9">
                         <div class="card-body pl-5">
-                            <h1>{{$course->name}}</h1>
+                            <h1>{{ucfirst($course->name)}}</h1>
                             <h2>{{count($course->students)}} students attending.</h2>
                             <h4>About:</h4>
                             <p>{{$course->description}}</p>

@@ -2,7 +2,7 @@
 
 @section('container')
 
-    <div class="col-sm-6">
+    <div class="col-sm-6 shadow">
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
@@ -16,12 +16,11 @@
             <div class="card">
                 <div class="row">
                     <div class="col-sm-3 m-auto">
-                            <img src="/storage/uploads/{{$student->img}}" class="rounded-circle mx-auto d-block" width="150px"
-                                 height="150px">
+                            <img src="/storage/uploads/{{$student->img}}" class="rounded-circle mx-auto d-block profile-pic-lg">
                     </div>
                     <div class="col-sm-9">
                         <div class="card-header pl-5">
-                            <h1>Name: {{$student->name}}</h1>
+                            <h1>Name: {{ucfirst($student->name)}}</h1>
                         </div>
                         <div class="card-body pl-5">
                             <h5>Phone: {{$student->phone}}</h5>

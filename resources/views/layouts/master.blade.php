@@ -16,6 +16,11 @@
 </head>
 
 <body style="max-width: 100%; overflow-x: hidden">
+@if($flash = session('message'))
+<div class="alert alert-success" id="flash-message" role="alert">
+    {{$flash}}
+</div>
+@endif
 @include('layouts.nav')
 @include('layouts.errors')
 <div class="jumbotron">

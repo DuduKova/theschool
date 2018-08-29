@@ -47414,7 +47414,7 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
-$("#dropzone").change(function(){
+$("#img").change(function(){
     readURL(this);
 });
 

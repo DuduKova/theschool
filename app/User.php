@@ -28,6 +28,13 @@ class User extends Authenticatable
     ];
     public static function usersList()
     {
-        Return static::all();
+
+        if(session('users')) {
+            return $users = session('users');
+        }
+        else {
+            Return static::all();
+        }
+
     }
 }

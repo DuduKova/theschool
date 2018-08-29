@@ -21,11 +21,11 @@
             <div class="card bg-light font-weight-bold text-dark">
                 <div class="row">
                     <div class="col-sm-3 card-img m-auto pl-4">
-                        <img src="/storage/uploads/{{$user->img}}" class="rounded-circle float-left" width="50px" height="50px">
+                        <img src="/storage/uploads/{{$user->img}}" class="rounded-circle float-left profile-pic">
                     </div>
                     <div class="col-sm-9 card-body">
-                        {{$user->name}}, {{$user->role}}
-                        {{$user->phone}}
+                        {{ucfirst($user->name)}}, {{ucfirst($user->role)}} <br>
+                        {{$user->phone}}<br>
                         {{$user->email}}
                     </div>
                 </div>

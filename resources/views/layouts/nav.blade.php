@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand navbar-light bg-info font-weight-bold">
+<nav class="navbar navbar-expand navbar-light bg-info font-weight-bold shadow">
     <img src="/storage/uploads/logo.png" width="100px" height="50px">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02"
             aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +26,7 @@
         <li class="nav-item">
             <a class="nav-link pr-4" href="/users/{{Auth::user()->id}}" role="button"
                aria-haspopup="true">
-                {{ Auth::user()->name }}, {{ Auth::user()->role }} <span class="caret"></span>
+                {{ Auth::user()->name }}, {{ ucfirst(Auth::user()->role) }} <span class="caret"></span>
             </a>
             <a class="nav-item float-right btn btn-sm btn-dark" href="{{ route('logout') }}"
                onclick="event.preventDefault();
@@ -38,11 +38,8 @@
                 @csrf
             </form>
         </li>
-        <li> <img src="/storage/uploads/{{Auth::user()->img}}" class="rounded-circle float-right" width="50px"
-                  height="50px"></li>
+        <li> <img src="/storage/uploads/{{Auth::user()->img}}" class="rounded-circle float-right profile-pic"></li>
 
     </ul>
-
             @endguest
-
 </nav>

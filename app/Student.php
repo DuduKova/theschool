@@ -19,7 +19,11 @@ class Student extends Model
     public static function studentsList()
     {
 
-        Return static::latest()->get();
+        if (session('students')) {
+            return $students = session('students');
+        } else {
+            Return static::latest()->get();
+        }
 
     }
 }
