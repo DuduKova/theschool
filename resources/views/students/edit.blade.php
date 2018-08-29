@@ -136,10 +136,7 @@
                     </ul>
                 </div>
 
-
                 {!! Form::close() !!}
-
-                @include('layouts.errors')
 
             </div>
 

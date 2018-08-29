@@ -104,10 +104,8 @@ class UsersController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'role' => 'required|string|max:7',
             'phone' => 'required|string|max:20',
-            'img' => 'required|max:1999'
+            'img' => 'max:1999'
         ]);
-
-        $this->imageValidate($request);
 
         //create User
         $user = User::find($id);

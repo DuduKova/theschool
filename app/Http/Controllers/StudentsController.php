@@ -12,6 +12,7 @@ class StudentsController extends Controller
     public function __construct()
     {
         $this->middleware('manager',['except' => ['index','show','edit','update']]);
+        $this->middleware('auth');
     }
 
     /**
@@ -70,7 +71,7 @@ class StudentsController extends Controller
         $courses_add = array($request->input('course'));
 
         foreach ($courses_add as $course) {
-            # code...
+
             if ($course)
             {
                 $course = Course::find($course);
@@ -140,7 +141,7 @@ class StudentsController extends Controller
         $courses_add = array($request->input('course'));
 
         foreach ($courses_add as $course) {
-            # code...
+
             if ($course)
             {
                 $course = Course::find($course);

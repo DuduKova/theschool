@@ -91,7 +91,6 @@
                     <h2>Total {{count($course->students)}} students taking this course.</h2>
                 @endisset
 
-                @include('layouts.errors')
             </div>
         </div>
     </div>

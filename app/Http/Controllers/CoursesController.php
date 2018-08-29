@@ -12,6 +12,7 @@ class CoursesController extends Controller
     public function __construct()
     {
         $this->middleware('manager',['except' => ['index','show']]);
+        $this->middleware('auth');
     }
 
     /**

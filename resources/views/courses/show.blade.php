@@ -22,8 +22,10 @@
                         <img src="/storage/uploads/{{$course->img}}" class="rounded-circle mx-auto d-block profile-pic-lg">
                     </div>
                     <div class="col-sm-9">
-                        <div class="card-body pl-5">
+                        <div class="card-header">
                             <h1>{{ucfirst($course->name)}}</h1>
+                        </div>
+                        <div class="card-body pl-5">
                             <h2>{{count($course->students)}} students attending.</h2>
                             <h4>About:</h4>
                             <p>{{$course->description}}</p>
