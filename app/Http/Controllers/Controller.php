@@ -13,7 +13,6 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function imageValidate(Request $request) {
-        if ($request->hasFile('img')) {
             //fet file name with ext
             $fileNameWithExt = $request->file('img')->getClientOriginalName();
 
@@ -30,9 +29,5 @@ class Controller extends BaseController
             $request->file('img')->storeAs('public/uploads', $fileNameToStore);
 
             return $fileNameToStore;
-
-        } else {
-           return $fileMameToStore = 'default.png';
-        }
     }
 }

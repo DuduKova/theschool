@@ -5,7 +5,7 @@
                 <img src="/storage/uploads/{{$course->img}}" class="rounded-circle float-left profile-pic">
             </div>
             <div class="col-sm-7 card-body">
-                {{ucfirst($course->name)}}
+               <h5>{{ucfirst($course->name)}}</h5>
             </div>
         </div>
 

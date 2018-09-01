@@ -115,7 +115,11 @@ class CoursesController extends Controller
         $course->name =$request->input('name');
         $course->description =$request->input('description');
         if($request->hasFile('img')) {
-            Storage::delete('public/uploads/'.$course->img);
+            if($course->img != 'default.png'){
+                //delete img
+                Storage::delete('public/uploads/'.$course->img);
+
+            }
             $course->img = $this->imageValidate($request);
         }
         $course->save();

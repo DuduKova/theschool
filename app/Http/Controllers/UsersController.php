@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateUserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Auth;
 use App\User;
+use Illuminate\Support\Facades\Redirect;
 
 class UsersController extends Controller
 {
@@ -14,6 +16,7 @@ class UsersController extends Controller
     {
         $this->middleware('manager');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -41,7 +44,7 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateUserRequest $request)
@@ -56,7 +59,7 @@ class UsersController extends Controller
         $user->password = \Hash::make($request->input('password'));
         $user->phone = $request->input('phone');
         $user->role = $request->input('role');
-        $user->img =  $this->imageValidate($request);
+        $user->img = $this->imageValidate($request);
         $user->save();
 
         session()->forget('users');
@@ -69,7 +72,7 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
@@ -80,20 +83,21 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $user = User::find($id);
         return view('users.edit')->with('user', $user);
+
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -112,8 +116,18 @@ class UsersController extends Controller
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->phone = $request->input('phone');
+        $user->role = $request->input('role');
+
+        if($request->input('role') == 'Owner' && Auth::user()->role != 'Owner'){
+            return Redirect::back()->withErrors(['There can be only one Owner!']);
+        }
+
         if ($request->hasFile('img')) {
-            Storage::delete('public/uploads/' . $user->img);
+            if ($user->img != 'default.png') {
+                //delete img
+                Storage::delete('public/uploads/' . $user->img);
+
+            }
             $user->img = $this->imageValidate($request);
         }
         $user->save();
@@ -128,16 +142,24 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
+
+        if($id == Auth::user()->id){
+            return Redirect::back()->withErrors(['You cannot delete yourself']);
+        }
+        if ($id === 1) {
+            return Redirect::back()->withErrors(['You cannot delete the Owner']);
+        }
+
         $user = User::find($id);
+
         if ($user->img != 'default.png') {
             //delete img
             Storage::delete('public/uploads/' . $user->img);
-
         }
         $user->delete();
 

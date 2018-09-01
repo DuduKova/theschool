@@ -24,9 +24,9 @@
                         <img src="/storage/uploads/{{$user->img}}" class="rounded-circle float-left profile-pic">
                     </div>
                     <div class="col-sm-9 card-body">
-                        {{ucfirst($user->name)}}, {{ucfirst($user->role)}} <br>
-                        {{$user->phone}}<br>
-                        {{$user->email}}
+                        <h5>{{ucfirst($user->name)}}, {{ucfirst($user->role)}}</h5>
+                        <h6>{{$user->phone}}</h6>
+                        <h6>{{$user->email}}</h6>
                     </div>
                 </div>
 

@@ -15,7 +15,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body style="max-width: 100%; overflow-x: hidden">
+<body>
 @if($flash = session('message'))
 <div class="alert alert-success" id="flash-message" role="alert">
     {{$flash}}

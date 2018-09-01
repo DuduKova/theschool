@@ -27,7 +27,7 @@
             @else
                 {!! Form::open(['action' => ['UsersController@destroy', $user->id], 'method' => 'POST', 'class' => 'float-right delete']) !!}
                 {{Form::hidden('_method', 'DELETE')}}
-                {{Form::submit('Delete', ['class' => 'btn btn-lg btn-danger'])}}
+                {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
 
                 {!! Form::close() !!}
             @endif
@@ -42,7 +42,7 @@
                 {!! Form::open(['action' => 'UsersController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
             @endempty
 
-            {!! Form::submit('Save', ['class' => 'btn btn-lg btn-info'] ) !!}
+            {!! Form::submit('Save', ['class' => 'btn btn-primary'] ) !!}
 
 
             <div class="jumbotron">

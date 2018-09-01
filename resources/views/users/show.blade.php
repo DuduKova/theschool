@@ -2,14 +2,6 @@
 
 @section('container')
 
-    @if($user->id == 1 && Auth::user()->role !== 'Owner')
-
-        <div class="col-sm-9 alert alert-danger">
-            <h1 align="center">You are not authorize to see this page.</h1>
-        </div>
-
-    @else
-
         <div class="col-sm-9">
             <div class="container">
                 <div class="row">
@@ -38,7 +30,5 @@
                 </div>
             </div>
         </div>
-
-    @endif
 
 @endsection
